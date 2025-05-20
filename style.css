@@ -460,41 +460,28 @@ body {
     object-fit: cover;
 }
 
-/* --- Recipe Detail Page - V3 Design (Inspired by Example) --- */
-/* ... (other styles for recipe detail page remain the same) ... */
-
 .recipe-media-container {
     width: 100%;
-    margin-bottom: 2rem; /* Add some space below the image container */
-    background-color: #f0f0f0; /* Light placeholder background */
-    border-radius: 8px; /* Optional: round the container if image doesn't fill it */
-    overflow: hidden; /* Important if using object-fit on the image */
-    /* We will control aspect ratio via the image itself or a max-height */
+    height: 350px; /* **Set a specific height for the image container** */
+                   /* Adjust this value (e.g., 300px, 400px, 450px) as you like */
+    overflow: hidden; /* Still good to have */
+    background-color: #FDFCFB; /* Match page background or a very light neutral like #f9f9f9 */
+                               /* This color will show if image doesn't fill the container due to 'contain' */
+    display: flex;          /* To help center the image if it's smaller than container */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem; /* Space below the image */
+    border-radius: 8px;  /* Optional: if you want the container itself to be rounded */
 }
 
 .recipe-featured-img-v2 {
-    display: block; /* Remove extra space below image */
-    width: 100%;    /* Make image responsive to container width */
-    height: auto;   /* Maintain aspect ratio by default */
-    max-height: 450px; /* SET A MAXIMUM HEIGHT to prevent overly tall images */
-                       /* Adjust this value (e.g., 350px, 500px) to your preference */
-    min-height: 250px; /* Optional: SET A MINIMUM HEIGHT to prevent very short images */
-                       /* Adjust or remove if not needed */
-    object-fit: cover; /* This will cover the area, cropping if necessary.
-                          Alternatives:
-                          - 'contain': Fits entire image, may leave empty space.
-                          - 'scale-down': Displays image at natural size or shrinks if too big.
-                       */
-    border-radius: 6px; /* Optional: slightly rounded corners for the image itself */
-    /* border-bottom: 1px solid #eee; /* Remove this if image has its own container border or shadow */
-}
-
-/* Ensure the card layout adapts if the image is the first element */
-.recipe-detail-card-v2 .recipe-media-container:first-child .recipe-featured-img-v2 {
-    border-top-left-radius: 8px;  /* Match card's top border radius */
-    border-top-right-radius: 8px; /* Match card's top border radius */
-    border-bottom-left-radius: 0; /* Keep bottom flat if followed by content */
-    border-bottom-right-radius: 0;
+    display: block;
+    max-width: 100%;   /* Image won't be wider than its container */
+    max-height: 100%;  /* Image won't be taller than its container */
+    width: auto;       /* Maintain aspect ratio by adjusting width if height is constrained by max-height */
+    height: auto;      /* Maintain aspect ratio by adjusting height if width is constrained by max-width */
+    object-fit: contain; /* **KEY CHANGE: Ensures the entire image is visible, fitting within bounds** */
+    border-radius: 6px; /* Optional: if you want image corners slightly rounded */
 }
 
 
