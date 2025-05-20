@@ -138,8 +138,7 @@ body {
 }
 
 /* Mobile Navigation Menu (Dropdown) */
-.nav-menu-mobile {
-    display: none;          /* Hidden by default, shown by script.js. */
+.nav-menu-mobile {         
     background-color: #ffffff; /* White background. */
     border-top: 1px solid #e5e7eb; /* Light grey border at the top. */
 }
