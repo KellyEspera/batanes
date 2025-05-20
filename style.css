@@ -1,0 +1,552 @@
+/* style.css - Batanes Cuisine Explorer Styles */
+/* This stylesheet defines the visual appearance of the website. */
+
+/* --- Base & Reset --- */
+/* These rules apply to all elements to ensure a consistent starting point. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Makes padding and border part of the element's total width and height. */
+  margin: 0;             /* Removes default browser margins. */
+  padding: 0;            /* Removes default browser padding. */
+}
+
+body {
+    font-family: 'Inter', sans-serif; /* Sets the main font for the website. */
+    background-color: #FAF7F0;       /* Main background color: Warm off-white. */
+    color: #333333;                 /* Main text color: Dark grey. */
+    line-height: 1.6;
+       
+}
+
+
+/* --- Utility Classes --- */
+/* These are helper classes that can be used on any HTML element. */
+.hidden {
+    display: none !important; /* Hides an element. '!important' ensures it overrides other display rules. */
+}
+
+.container {
+    width: 100%;              /* Takes the full available width. */
+    margin-left: auto;        /* Centers the container on the page. */
+    margin-right: auto;       /* Centers the container on the page. */
+    padding-left: 1rem;       /* Adds space on the left inside the container. */
+    padding-right: 1rem;      /* Adds space on the right inside the container. */
+}
+
+/* Responsive container widths: Adjusts max-width based on screen size. */
+@media (min-width: 640px) { .container { max-width: 640px; } } /* Small screens */
+@media (min-width: 768px) { .container { max-width: 768px; } } /* Medium screens */
+@media (min-width: 1024px) { .container { max-width: 1024px; } } /* Large screens */
+@media (min-width: 1280px) { .container { max-width: 1280px; } } /* Extra-large screens */
+@media (min-width: 1536px) { .container { max-width: 1536px; } } /* 2x Extra-large screens */
+
+/* Animation for sections when they become visible (used by script.js) */
+.fade-in {
+    animation: fadeInAnimation 0.8s ease-in-out;
+}
+
+@keyframes fadeInAnimation { /* Defines the fade-in animation steps */
+    from { opacity: 0; transform: translateY(10px); } /* Start transparent and slightly down. */
+    to { opacity: 1; transform: translateY(0); }   /* End fully visible and in normal position. */
+}
+
+/* --- Header & Navigation --- */
+.site-header {
+    background-color: #ffffff; /* White background for the header. */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Adds a subtle shadow below the header. */
+    position: sticky;          /* Makes the header stay at the top of the screen when scrolling. */
+    top: 0;                    /* Sticks to the very top. */
+    z-index: 50;               /* Ensures the header is above other content. */
+}
+
+.navbar {
+    display: flex;              /* Arranges items in a row. */
+    justify-content: space-between; /* Puts space between the logo and the navigation menu. */
+    align-items: center;        /* Aligns items vertically in the middle. */
+    padding-top: 1rem;          /* Space above and below navbar content. */
+    padding-bottom: 1rem;
+}
+
+.logo {
+    font-size: 1.5rem;      /* Size of the logo text. */
+    line-height: 2rem;
+    font-weight: 700;       /* Makes the logo text bold. */
+    color: #D95500;         /* Logo color: Burnt Orange/Terracotta. */
+    transition: color 0.3s ease; /* Smooth color change on hover. */
+    text-decoration: none;  /* Removes underline from the link. */
+}
+.logo:hover {
+    color: #BF5700;         /* Darker shade of Burnt Orange on hover. */
+}
+
+/* Desktop Navigation Menu */
+.nav-menu-desktop {
+    display: none;          /* Hidden on small screens by default. */
+    align-items: center;    /* Vertically aligns items in the menu. */
+}
+@media (min-width: 768px) { /* Styles for screens 768px wide and larger (tablets and desktops) */
+    .nav-menu-desktop {
+        display: flex;      /* Show the menu and arrange items in a row. */
+        gap: 1.5rem;        /* Space between menu items. */
+    }
+}
+
+.nav-item { /* Style for individual navigation links in the desktop menu */
+    color: #4A5568;         /* Text color for nav items. */
+    transition: color 0.3s ease; /* Smooth color change. */
+    text-decoration: none;  /* No underline. */
+    padding-bottom: 2px;    /* Space for the active link's bottom border. */
+    border-bottom: 2px solid transparent; /* Placeholder for active border, keeps spacing consistent. */
+}
+.nav-item:hover {
+    color: #E07A5F;         /* Color on hover: Primary Accent (Terracotta/Coral). */
+}
+
+/* Style for the currently active navigation link (set by script.js) */
+.nav-link.active {
+    font-weight: 700;       /* Makes active link text bold. */
+    color: #E07A5F;         /* Color: Primary Accent. */
+    border-bottom-color: #E07A5F; /* Underline color: Primary Accent. */
+}
+
+.nav-button { /* For the "Login/Register" button in the desktop nav */
+    margin-left: 0.5rem;    /* Space to its left. */
+}
+
+/* Mobile Menu Toggle Button (Hamburger Icon) */
+.menu-toggle-button {
+    display: block;         /* Visible on small screens. */
+    padding: 0.5rem;
+    color: #4A5568;
+    background: none;       /* No background color. */
+    border: none;           /* No border. */
+    cursor: pointer;        /* Changes cursor to a pointer on hover. */
+    transition: color 0.3s ease;
+}
+.menu-toggle-button:hover {
+    color: #E07A5F;         /* Color on hover: Primary Accent. */
+}
+@media (min-width: 768px) { /* Hide on screens 768px and wider */
+    .menu-toggle-button {
+        display: none;
+    }
+}
+.icon-menu { /* Size of the SVG hamburger icon */
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+/* Mobile Navigation Menu (Dropdown) */
+.nav-menu-mobile {
+    display: none;          /* Hidden by default, shown by script.js. */
+    background-color: #ffffff; /* White background. */
+    border-top: 1px solid #e5e7eb; /* Light grey border at the top. */
+}
+@media (min-width: 768px) { /* Make sure it's hidden on larger screens too */
+    .nav-menu-mobile {
+        display: none !important;
+    }
+}
+
+.nav-item-mobile { /* Style for individual links in the mobile menu */
+    display: block;         /* Makes each link take the full width. */
+    padding: 0.75rem 1rem;
+    color: #4A5568;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.nav-item-mobile:hover {
+    background-color: #f3f4f6; /* Light grey background on hover. */
+    color: #E07A5F;         /* Color on hover: Primary Accent. */
+}
+.nav-item-mobile-highlight { /* For the "Login/Register" link in mobile menu */
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #E07A5F;         /* Color: Primary Accent. */
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+.nav-item-mobile-highlight:hover {
+    background-color: #f3f4f6;
+}
+
+/* Style for the active link in the mobile menu */
+.nav-link.mobile-link.active {
+    color: #E07A5F;             /* Color: Primary Accent. */
+    background-color: #FFEFE5;   /* Background: Very light version of primary. */
+    font-weight: 600;
+}
+
+/* --- Main Content Area --- */
+.main-content {
+    padding-top: 2rem;      /* Space at the top and bottom of the main content. */
+    padding-bottom: 2rem;
+}
+
+/* Style for each page section (Home, Recipes, etc.) */
+.content-section {
+    min-height: 80vh;       /* Minimum height to try and fill the screen. */
+    margin-bottom: 4rem;    /* Space below each section. */
+}
+.content-section:last-of-type { /* Remove bottom margin from the very last section on the page */
+    margin-bottom: 0;
+}
+
+/* --- Buttons --- */
+.button { /* Base style for all buttons */
+    display: inline-block;  /* Allows padding and margin. */
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;  /* Makes buttons pill-shaped. */
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Smooth transitions. */
+    border: 1px solid transparent; /* No visible border by default. */
+}
+.button-small { /* For smaller buttons */
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding: 0.5rem 1rem;
+}
+.button-primary { /* Primary button style (e.g., main actions) */
+    background-color: #E07A5F; /* Background: Primary Accent. */
+    color: #ffffff;             /* Text color: White. */
+}
+.button-primary:hover {
+    background-color: #D95500; /* Background on hover: Darker Primary Accent. */
+}
+.button-light { /* Light button style (e.g., on dark backgrounds) */
+    background-color: #ffffff;
+    color: #E07A5F;             /* Text color: Primary Accent. */
+}
+.button-light:hover {
+    background-color: #f7f3e8;   /* Background on hover: Lighter shade of body background. */
+}
+.button-success { /* Success button style (e.g., "Add to Cart") */
+    background-color: #3D99A2; /* Background: Secondary Accent (Ocean Teal). */
+    color: #ffffff;
+}
+.button-success:hover {
+    background-color: #00695C; /* Background on hover: Darker Secondary Accent. */
+}
+
+/* --- Hero Section (Top banner on Home page) --- */
+.hero-section {
+    background-color: #E07A5F; /* Fallback background color if image fails: Primary Accent. */
+    color: #ffffff;
+    border-radius: 0.5rem;  /* Rounded corners. */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Drop shadow. */
+    padding: 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    background-image: url(img/batanes_bg.jpg); /* Your background image. */
+    background-size: cover;    /* Image covers the entire area. */
+    background-position: center; /* Image is centered. */
+}
+@media (min-width: 768px) { .hero-section { padding: 4rem; } } /* More padding on larger screens. */
+
+.hero-overlay { /* Dark semi-transparent layer over the hero image to make text readable. */
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1.5rem;
+    border-radius: 0.375rem;
+    display: inline-block;  /* Fits the content inside it. */
+    max-width: 100%;
+}
+.hero-overlay a.nav-item { /* For the "Explore Recipes" link if it uses .nav-item style */
+    color: #FFFFFF;
+    border-bottom-color: #E07A5F; /* Underline with Primary Accent. */
+}
+.hero-overlay a.nav-item:hover {
+    color: #FAF7F0;         /* Text color on hover: Light Background color. */
+    border-bottom-color: #FAF7F0;
+}
+
+.hero-title {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+@media (min-width: 768px) { .hero-title { font-size: 3rem; line-height: 1; } }
+
+.hero-subtitle {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) { .hero-subtitle { font-size: 1.25rem; line-height: 1.75rem; } }
+
+.hero-button { /* Specific padding for the main button in the hero section */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+/* --- Section Titles --- */
+.section-title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #BF5700; /* Color: Darker/richer shade of primary. */
+}
+.section-subtitle {
+    text-align: center;
+    color: #525252; /* Subtitle color: Slightly darker grey. */
+    margin-bottom: 2rem;
+}
+
+/* --- Grid Layouts --- */
+/* Basic grid setup, columns are defined by specific grid classes. */
+.grid {
+    display: grid;
+    gap: 2rem; /* Space between grid items. */
+}
+/* 2-column grid: 1 column on small screens, 2 on medium+ */
+.grid-2-col { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+@media (min-width: 768px) { .grid-2-col { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* 3-column grid: 1 on small, 2 on medium, 3 on large */
+.grid-3-col { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+@media (min-width: 640px) { .grid-3-col { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .grid-3-col { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* 4-column grid: 2 on small, 3 on medium, 4 on large */
+.grid-4-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 640px) { .grid-4-col { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .grid-4-col { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* --- Cards (for Recipes, Products, etc.) --- */
+.card {
+    background-color: #ffffff; /* White background for cards. */
+    border-radius: 0.5rem;    /* Rounded corners. */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow. */
+    overflow: hidden;         /* Ensures content (like images) doesn't spill outside rounded corners. */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects. */
+    border: 1px solid #e5e7eb; /* Light grey border. */
+}
+.card:hover {
+    transform: scale(1.03); /* Slightly enlarge card on hover. */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Larger shadow on hover. */
+}
+
+.card-image { /* For recipe and product images */
+    width: 100%;
+    height: 12rem;      /* Fixed height for card images. */
+    object-fit: cover;  /* Ensures image covers the area, cropping if necessary, without distortion. */
+}
+/* .card-image-video removed as .video-placeholder handles card videos directly */
+
+.card-content { /* Padding inside the card, below the image. */
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #BF5700;         /* Card title color: Darker, rich primary. */
+}
+.card-text {
+    color: #4A5568;         /* Card description text color. */
+    margin-bottom: 1rem;
+    font-size: 0.875rem;    /* Smaller text for descriptions. */
+    line-height: 1.25rem;
+}
+.card-link { /* General text links within a card */
+    color: #3D99A2;         /* Link color: Secondary Accent (Ocean Teal). */
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.card-link:hover {
+    color: #00695C;         /* Link color on hover: Darker Secondary Accent. */
+}
+
+/* Specific "View Recipe" button style */
+.view-recipe-btn {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #E0EEDD; /* Background: Light, fresh green. */
+    color: #556B2F;             /* Text color: Darker green. */
+    text-decoration: none;
+    border-radius: 9999px;      /* Pill shape. */
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+.view-recipe-btn:hover {
+    background-color: #C9DDBF;   /* Background on hover: Slightly darker green. */
+}
+
+/* Specific Card Type Adjustments */
+.featured-recipes { margin-bottom: 3rem; }
+.featured-ingredients { text-align: center; }
+.ingredient-card { padding: 1rem; text-decoration: none; display: block; color: inherit; }
+.ingredient-image { width: 6rem; height: 6rem; margin-left: auto; margin-right: auto; border-radius: 9999px; margin-bottom: 0.75rem; object-fit: cover; }
+.ingredient-name { font-weight: 600; color: #333333; }
+
+.product-card { padding: 1.5rem; text-align: center; }
+.product-image { width: 8rem; height: 8rem; margin-left: auto; margin-right: auto; border-radius: 0.5rem; margin-bottom: 1rem; object-fit: cover; }
+.product-name { font-size: 1.125rem; line-height: 1.75rem; font-weight: 600; margin-bottom: 0.25rem; color: #333333; }
+.product-description { color: #525252; font-size: 0.875rem; margin-bottom: 0.75rem; }
+.product-price { font-size: 1.25rem; line-height: 1.75rem; font-weight: 700; color: #E07A5F; display: block; margin-bottom: 0.75rem; }
+.product-card .button { width: 100%; }
+
+.about-card { padding: 2rem; }
+.about-image { width: 100%; height: 16rem; object-fit: cover; border-radius: 0.375rem; margin-bottom: 1.5rem; }
+.about-text { color: #4A5568; line-height: 1.65; margin-bottom: 1rem; }
+.about-text:last-child { margin-bottom: 0; }
+
+/* --- Forms & Inputs --- */
+.search-filter-box { margin-bottom: 2rem; padding: 1.5rem; background-color: #ffffff; border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.06); }
+.search-filter-form { display: flex; flex-direction: column; gap: 1rem; }
+@media (min-width: 768px) { .search-filter-form { flex-direction: row; } }
+
+.input-field { padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.375rem; font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease; appearance: none; background-color: #fff; }
+.input-field:focus { outline: none; border-color: #E07A5F; box-shadow: 0 0 0 2px rgba(224, 122, 95, 0.4); }
+.search-input { flex-grow: 1; }
+.filter-select { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); background-position: right 0.5rem center; background-repeat: no-repeat; background-size: 1.5em 1.5em; padding-right: 2.5rem; }
+
+.newsletter-form { display: flex; }
+.newsletter-input { flex-grow: 1; border-top-right-radius: 0; border-bottom-right-radius: 0; padding: 0.5rem; font-size: 0.875rem; color: #333333; }
+.newsletter-button { border-top-left-radius: 0; border-bottom-left-radius: 0; padding: 0.5rem 1rem; font-size: 0.875rem; }
+.newsletter-response { font-size: 0.75rem; margin-top: 0.5rem; }
+.newsletter-response.hidden { display: none; }
+
+/* --- Recipe Detail View (If implemented) --- */
+.recipe-detail-view { margin-top: 3rem; padding: 2rem; background-color: #ffffff; border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.06); position: relative; }
+.close-button { position: absolute; top: 0.75rem; right: 1rem; font-size: 1.5rem; font-weight: 700; color: #6b7280; background: none; border: none; cursor: pointer; line-height: 1; padding: 0.25rem; transition: color 0.3s ease; }
+.close-button:hover { color: #dc2626; }
+.recipe-detail-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+.recipe-detail-image { width: 100%; height: 16rem; object-fit: cover; border-radius: 0.375rem; margin-bottom: 1rem; }
+.recipe-detail-content { color: #333333; }
+.recipe-detail-content h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; color: #111827; }
+.recipe-detail-content ul, .recipe-detail-content ol { margin-left: 1.5rem; margin-bottom: 1rem; }
+.recipe-detail-content li { margin-bottom: 0.5rem; }
+
+/* --- Tutorial Placeholders & Video Modal --- */
+/* UPDATED for Tutorial Cards */
+.video-placeholder { /* Container for tutorial video thumbnail/iframe IN CARDS */
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;  /* 16:9 aspect ratio (9 / 16 = 0.5625) */
+    height: 0;
+    background-color: #e5e7eb; /* Fallback background */
+    overflow: hidden;
+}
+.video-placeholder iframe { /* Style for the iframe directly within .video-placeholder (in cards) */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0; /* Optional: remove default iframe border */
+}
+.video-placeholder img { /* If using static images as placeholders */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Recipe Detail Page - V3 Design (Inspired by Example) --- */
+/* ... (other styles for recipe detail page remain the same) ... */
+
+.recipe-media-container {
+    width: 100%;
+    margin-bottom: 2rem; /* Add some space below the image container */
+    background-color: #f0f0f0; /* Light placeholder background */
+    border-radius: 8px; /* Optional: round the container if image doesn't fill it */
+    overflow: hidden; /* Important if using object-fit on the image */
+    /* We will control aspect ratio via the image itself or a max-height */
+}
+
+.recipe-featured-img-v2 {
+    display: block; /* Remove extra space below image */
+    width: 100%;    /* Make image responsive to container width */
+    height: auto;   /* Maintain aspect ratio by default */
+    max-height: 450px; /* SET A MAXIMUM HEIGHT to prevent overly tall images */
+                       /* Adjust this value (e.g., 350px, 500px) to your preference */
+    min-height: 250px; /* Optional: SET A MINIMUM HEIGHT to prevent very short images */
+                       /* Adjust or remove if not needed */
+    object-fit: cover; /* This will cover the area, cropping if necessary.
+                          Alternatives:
+                          - 'contain': Fits entire image, may leave empty space.
+                          - 'scale-down': Displays image at natural size or shrinks if too big.
+                       */
+    border-radius: 6px; /* Optional: slightly rounded corners for the image itself */
+    /* border-bottom: 1px solid #eee; /* Remove this if image has its own container border or shadow */
+}
+
+/* Ensure the card layout adapts if the image is the first element */
+.recipe-detail-card-v2 .recipe-media-container:first-child .recipe-featured-img-v2 {
+    border-top-left-radius: 8px;  /* Match card's top border radius */
+    border-top-right-radius: 8px; /* Match card's top border radius */
+    border-bottom-left-radius: 0; /* Keep bottom flat if followed by content */
+    border-bottom-right-radius: 0;
+}
+
+
+/* ... (rest of your .recipe-detail-card-v2 and other styles) ... */
+
+
+/* Modal Styles (Mostly unchanged, .video-player-container is for modal video) */
+.modal-overlay { position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.75); display: flex; align-items: center; justify-content: center; padding: 1rem; z-index: 60; }
+.modal-content { background-color: #ffffff; border-radius: 0.5rem; overflow: hidden; width: 100%; max-width: 56rem; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04); }
+.modal-header { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; border-bottom: 1px solid #e5e7eb; }
+.modal-title { font-size: 1.125rem; font-weight: 600; }
+.modal-close-button { font-size: 1.5rem; color: #4b5563; background: none; border: none; cursor: pointer; line-height: 1; }
+.modal-close-button:hover { color: #000000; }
+.modal-body { padding: 1rem; }
+
+.video-player-container { /* This is for the video player INSIDE THE MODAL */
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio for video. */
+    height: 0;
+    overflow: hidden;
+}
+.video-player-container iframe { /* Make the iframe responsive and fill the modal's player container. */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0; /* Optional */
+}
+
+/* --- Cart Notification --- */
+.cart-notification { position: fixed; bottom: 1rem; right: 1rem; background-color: #00695C; color: #ffffff; padding: 0.75rem; border-radius: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05); z-index: 40; }
+
+/* --- Footer --- */
+.site-footer-container { background-color: #1f2937; color: #d1d5db; margin-top: 4rem; }
+.footer-grid { padding-top: 3rem; padding-bottom: 3rem; display: grid; gap: 2rem; grid-template-columns: repeat(1, minmax(0, 1fr)); }
+@media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.footer-heading { font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; color: #ffffff; }
+.footer-text { font-size: 0.875rem; line-height: 1.25rem; margin-bottom: 0.25rem; }
+.footer-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.footer-link { color: inherit; text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; border-bottom: none; padding-bottom: 0; font-weight: normal; }
+.footer-link:hover { color: #A2D0D6; border-bottom: none; }
+.footer-link.active { color: inherit; border-bottom: none; font-weight: normal; }
+.footer-bottom { background-color: #111827; text-align: center; padding: 1rem; }
+.footer-copyright { font-size: 0.875rem; color: #6b7280; }
+
+/* Additional generic helper classes */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
+/* .form-group { margin-bottom: 0.5rem; } */ /* Already in user's HTML, no need to repeat */
+.no-results { text-align: center; margin-top: 2rem; color: #525252; font-size: 1.1em; width: 100%; }
+
+/* Keyframes for animations */
+@keyframes fadeInOut { 0%, 100% { opacity: 0; transform: translateY(20px); } 10%, 90% { opacity: 1; transform: translateY(0); } }
+.cart-notification { animation: none; /* JS will trigger */ }
+/* .video-player-iframe already styled within .video-player-container iframe */

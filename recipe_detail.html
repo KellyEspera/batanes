@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Details - Batanes Cuisine Explorer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+
+    <div class="recipe-detail-page-wrapper">
+        <div class="container recipe-detail-page-container">
+            <div class="back-button-area">
+                <a href="index.html#recipes" class="button button-light button-small">&larr; Back to All Recipes</a>
+            </div>
+
+            <article class="recipe-detail-card-v2" id="recipe-content-area">
+                <p class="loading-message" style="text-align:center; padding: 2rem;">Loading recipe details...</p>
+            </article>
+        </div>
+    </div>
+
+    <script src="script.js"></script> 
+    <script>
+        // JavaScript specific to this recipe_detail.html page
+        document.addEventListener('DOMContentLoaded', function() {
+            const recipeContentArea = document.getElementById('recipe-content-area');
+            if (!recipeContentArea) {
+                console.error("Recipe content area ('recipe-content-area') not found on recipe_detail.html!");
+                return;
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const recipeId = urlParams.get('id');
+
+            if (!recipeId) {
+                recipeContentArea.innerHTML = '<p class="error-message" style="text-align:center; color:red; padding:2rem;">No recipe ID was provided in the URL.</p>';
+                document.title = "Error - Batanes Cuisine Explorer";
+                return;
+            }
+
+            // Ensure recipesData is loaded and available (it's defined in the linked script.js)
+            if (typeof recipesData === 'undefined' || recipesData === null) {
+                recipeContentArea.innerHTML = '<p class="error-message" style="text-align:center; color:red; padding:2rem;">Recipe data (recipesData array) is not available. Check script.js.</p>';
+                console.error("recipesData is not defined. Ensure it's globally available from script.js.");
+                return;
+            }
+
+            const recipe = recipesData.find(r => r.id === recipeId);
+
+            if (recipe) {
+                document.title = recipe.title + " - Batanes Cuisine Explorer";
+
+                let imageHtml = `<img src="https://placehold.co/800x600/E07A5F/FFFFFF?text=${encodeURIComponent(recipe.title)}" alt="Placeholder for ${recipe.title}" class="recipe-featured-img-v2">`;
+                if (recipe.image_url) {
+                     // For a real site, you'd ideally check if the image exists.
+                     // For simplicity here, we assume if image_url is present, it's valid.
+                     imageHtml = `<img src="${recipe.image_url}" alt="${recipe.title}" class="recipe-featured-img-v2" onerror="this.onerror=null; this.src='https://placehold.co/800x600/E07A5F/FFFFFF?text=${encodeURIComponent(recipe.title)}';">`;
+                }
+
+                let ingredientsHtml = '';
+                if (recipe.ingredients && recipe.ingredients.length > 0) {
+                    ingredientsHtml = '<ul>';
+                    recipe.ingredients.forEach(ing => {
+                        ingredientsHtml += `<li>${ing.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</li>`; // Sanitize
+                    });
+                    ingredientsHtml += '</ul>';
+                }
+
+                let procedureHtml = '';
+                if (recipe.procedure && recipe.procedure.length > 0) {
+                    procedureHtml = '<ol>';
+                    recipe.procedure.forEach(step => {
+                        procedureHtml += `<li>${step.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</li>`; // Sanitize
+                    });
+                    procedureHtml += '</ol>';
+                }
+                
+                recipeContentArea.innerHTML = `
+                    <div class="recipe-main-header">
+                        <h1 class="recipe-title-main">${recipe.title.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</h1>
+                        <div class="recipe-meta-bar">
+                            ${recipe.prep_time ? `<span class="meta-item"><strong>Prep:</strong> ${recipe.prep_time.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</span>` : ''}
+                            ${recipe.cook_time ? `<span class="meta-item"><strong>Cook:</strong> ${recipe.cook_time.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</span>` : ''}
+                            ${recipe.servings ? `<span class="meta-item"><strong>Serves:</strong> ${recipe.servings.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</span>` : ''}
+                        </div>
+                    </div>
+                    <div class="recipe-media-container">
+                        ${imageHtml}
+                    </div>
+                    <div class="recipe-actions-bar">
+                        <button type="button" class="button button-secondary button-small recipe-action-btn" onclick="window.print();">🖨️ Print Recipe</button>
+                    </div>
+                    ${recipe.description ? `
+                    <section class="recipe-section-v2 recipe-description-section">
+                        <h2 class="recipe-subheading-v2">Description</h2>
+                        <div class="recipe-text-content">
+                            ${recipe.description.replace(/\n/g, '<br>').replace(/</g, "&lt;").replace(/>/g, "&gt;")}
+                        </div>
+                    </section>` : ''}
+                    ${ingredientsHtml ? `
+                    <section class="recipe-section-v2 recipe-ingredients-section">
+                        <h2 class="recipe-subheading-v2">Ingredients</h2>
+                        <div class="recipe-text-content recipe-ingredients-list">
+                            ${ingredientsHtml}
+                        </div>
+                    </section>` : ''}
+                    ${procedureHtml ? `
+                    <section class="recipe-section-v2 recipe-instructions-section">
+                        <h2 class="recipe-subheading-v2">Instructions</h2>
+                        <div class="recipe-text-content recipe-instructions-steps">
+                            ${procedureHtml}
+                        </div>
+                    </section>` : ''}
+                `;
+            } else {
+                recipeContentArea.innerHTML = '<p class="error-message" style="text-align:center; color:red; padding:2rem;">Recipe with ID \'' + recipeId.replace(/</g, "&lt;").replace(/>/g, "&gt;") + '\' not found.</p>';
+                document.title = "Recipe Not Found - Batanes Cuisine Explorer";
+            }
+        });
+    </script>
+</body>
+</html>

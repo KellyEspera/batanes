@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batanes Cuisine Explorer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar container">
+            <a href="#home" class="logo">Batanes Cuisine</a>
+
+            <div id="main-nav" class="nav-menu-desktop">
+                <a href="#home" class="nav-link nav-item active" data-section="home">Home</a>
+                <a href="#recipes" class="nav-link nav-item" data-section="recipes">Recipes</a>
+                <a href="#tutorials" class="nav-link nav-item" data-section="tutorials">Tutorials</a>
+                <a href="#marketplace" class="nav-link nav-item" data-section="marketplace">Marketplace</a>
+                <a href="#about" class="nav-link nav-item" data-section="about">About</a>
+                </div>
+
+            <button id="mobile-menu-button" class="menu-toggle-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon-menu" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-nav" class="nav-menu-mobile hidden"> <a href="#home" class="nav-link mobile-link nav-item-mobile active" data-section="home">Home</a>
+            <a href="#recipes" class="nav-link mobile-link nav-item-mobile" data-section="recipes">Recipes</a>
+            <a href="#tutorials" class="nav-link mobile-link nav-item-mobile" data-section="tutorials">Tutorials</a>
+            <a href="#marketplace" class="nav-link mobile-link nav-item-mobile" data-section="marketplace">Marketplace</a>
+            <a href="#about" class="nav-link mobile-link nav-item-mobile" data-section="about">About</a>
+            </div>
+    </header>
+
+    <main class="main-content container">
+
+        <section id="home" class="page-section fade-in content-section">
+            <div class="hero-section">
+                <div class="hero-overlay">
+                    <h1 class="hero-title">Discover the Flavors of Batanes</h1>
+                    <p class="hero-subtitle">Explore authentic Ivatan recipes, cooking tutorials, and find unique local ingredients.</p>
+                    <a href="#recipes" class="nav-link nav-item" data-section="recipes">Explore Recipes</a>
+                </div>
+            </div>
+
+            <h2 class="section-title">Featured Recipes</h2>
+            <div class="grid grid-3-col featured-recipes">
+                <div class="card recipe-card">
+                    <img src="img/uvud.jpg" alt="Uvud Balls Recipe" class="card-image" onerror="this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Error'">
+                    <div class="card-content">
+                        <h3 class="card-title">Uvud Balls (Banana Pith)</h3>
+                        <p class="card-text">A traditional Ivatan dish made from banana pith, ground meat, and spices.</p>
+                        <a href="recipe_detail.html?id=uvud_balls" class="view-recipe-btn">View Recipe</a>
+                    </div>
+                </div>
+                <div class="card recipe-card">
+                    <img src="img/venes.jpg" alt="Vunes Recipe" class="card-image" onerror="this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Error'">
+                    <div class="card-content">
+                        <h3 class="card-title">Vunes (Dried Gabi Stalks)</h3>
+                        <p class="card-text">Dried taro/gabi stalks cooked with pork or fish, a staple Ivatan delicacy.</p>
+                        <a href="recipe_detail.html?id=vunes" class="view-recipe-btn">View Recipe</a>
+                    </div>
+                </div>
+                <div class="card recipe-card">
+                    <img src="img/dibang.jpg" alt="Dibang Recipe" class="card-image" onerror="this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Error'">
+                    <div class="card-content">
+                        <h3 class="card-title">Kinilaw na Dibang</h3>
+                        <p class="card-text">Often dried or cooked fresh, Dibang is a Batanes specialty.</p>
+                        <a href="recipe_detail.html?id=dibang_kinilaw" class="view-recipe-btn">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Local Treasures</h2>
+            <div class="grid grid-4-col featured-ingredients">
+                <div class="card product-card">
+                    <img src="ingredients/turmeric.jpg" alt="Turmeric" class="product-image" onerror="this.src='https://placehold.co/300x300/facc15/ffffff?text=Turmeric'">
+                    <h3 class="product-name">Turmeric (Yellow Ginger)</h3>
+                    <p class="product-description">Aromatic and flavorful local turmeric, essential for Supas.</p>
+                    <a href="find_stores.html?product_name=Fresh+Batanes+Turmeric" class="button button-primary button-small">Find Stores</a>
+                </div>
+                <div class="card product-card">
+                    <img src="ingredients/dibang.jpg" alt="Dried Fish" class="product-image" onerror="this.src='https://placehold.co/300x300/a1a1aa/ffffff?text=Dried+Fish'">
+                    <h3 class="product-name">Dried Fish (Dibang)</h3>
+                    <p class="product-description">Sun-dried local fish, a staple for Ivatan households.</p>
+                    <a href="find_stores.html?product_name=Dried+Flying+Fish+(Dibang)" class="button button-primary button-small">Find Stores</a>
+                </div>
+                <div class="card product-card">
+                    <img src="ingredients/yam.jpg" alt="Yam (Uvi)" class="product-image" onerror="this.src='https://placehold.co/300x300/d1d5db/4b5563?text=Yam+(Uvi)'">
+                    <h3 class="product-name">Yam (Uvi)</h3>
+                    <p class="product-description">Locally grown yams, a versatile Batanes root crop.</p>
+                    <a href="find_stores.html?product_name=Yam+(Uvi)" class="button button-primary button-small">Find Stores</a>
+                </div>
+                <div class="card product-card">
+                    <img src="ingredients/lobster.png" alt="Lobster (Payi)" class="product-image" onerror="this.src='https://placehold.co/300x300/f87171/7f1d1d?text=Lobster+(Payi)'">
+                    <h3 class="product-name">Lobster (Payi)</h3>
+                    <p class="product-description">A prized Batanes delicacy. (Note: May be subject to conservation efforts).</p>
+                    <a href="find_stores.html?product_name=Lobster+(Payi)" class="button button-primary button-small">Find Stores</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="recipes" class="page-section fade-in content-section hidden">
+            <h1 class="section-title">Batanes Recipe Collection</h1>
+            <div class="search-filter-box">
+                <form id="recipe-search-form" class="search-filter-form">
+                    <div class="form-group">
+                        <label for="recipe-search-input" class="sr-only">Search Recipes</label>
+                        <input type="text" id="recipe-search-input" placeholder="Search recipes (e.g., Uved, Fish...)" class="input-field search-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipe-filter-select" class="sr-only">Filter by Category</label>
+                        <select id="recipe-filter-select" class="input-field filter-select">
+                            <option value="">All Categories</option>
+                            <option value="root_crop">Root Crop Dishes</option>
+                            <option value="vegetable">Vegetable Dishes</option>
+                            <option value="fish">Fish Dishes</option>
+                            <option value="pork">Meat Dishes (Pork)</option>
+                            </select>
+                    </div>
+                    </form>
+            </div>
+            <div id="recipe-grid" class="grid grid-3-col">
+                <div class="card recipe-card" data-category="root_crop">
+                    <img src="img/uvud.jpg" alt="Uvud Balls Recipe" class="card-image" onerror="this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Error'">
+                    <div class="card-content">
+                        <h3 class="card-title">Uvud Balls (Banana Pith)</h3>
+                        <p class="card-text">A traditional Ivatan dish made from banana pith, ground meat, and spices.</p>
+                        <a href="recipe_detail.html?id=uvud_balls" class="view-recipe-btn">View Recipe</a>
+                    </div>
+                </div>
+                <div class="card recipe-card" data-category="vegetable">
+                    <img src="img/venes.jpg" alt="Vunes Recipe" class="card-image" onerror="this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Error'">
+                    <div class="card-content">
+                        <h3 class="card-title">Vunes (Dried Gabi Stalks)</h3>
+                        <p class="card-text">Dried taro/gabi stalks cooked with pork or fish, a staple Ivatan delicacy.</p>
+                        <a href="recipe_detail.html?id=vunes" class="view-recipe-btn">View Recipe</a>
+                    </div>
+                </div>
+                <div class="card recipe-card" data-category="fish">
+                    <img src="img/dibang.jpg" alt="Kinilaw na Dibang" class="card-image" onerror="this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Error'">
+                    <div class="card-content">
+                        <h3 class="card-title">Kinilaw na Dibang</h3>
+                        <p class="card-text">Refreshing flying fish ceviche, an Ivatan specialty.</p>
+                        <a href="recipe_detail.html?id=dibang_kinilaw" class="view-recipe-btn">View Recipe</a>
+                    </div>
+                </div>
+                <div class="card recipe-card" data-category="pork">
+                    <img src="img/luñis.jpg" alt="Luñis Recipe" class="card-image" onerror="this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Error'">
+                    <div class="card-content">
+                        <h3 class="card-title">Luñis (Salted Pork)</h3>
+                        <p class="card-text">Ivatan version of adobo, pork slow-cooked in its own fat.</p>
+                        <a href="recipe_detail.html?id=lunis" class="view-recipe-btn">View Recipe</a>
+                    </div>
+                </div>
+                <div class="card recipe-card" data-category="root_crop">
+                    <img src="img/supas.jpg" alt="Supas Recipe" class="card-image" onerror="this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Error'">
+                    <div class="card-content">
+                        <h3 class="card-title">Supas (Turmeric Rice)</h3>
+                        <p class="card-text">Rice cooked with turmeric and sometimes pork, giving it a distinct yellow color.</p>
+                        <a href="recipe_detail.html?id=supas" class="view-recipe-btn">View Recipe</a>
+                    </div>
+                </div>
+                <div class="card recipe-card" data-category="fish">
+                    <img src="img/lobster.jpg" alt="Payi (Lobster) Recipe" class="card-image" onerror="this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Error'">
+                    <div class="card-content">
+                        <h3 class="card-title">Steamed Payi (Lobster)</h3>
+                        <p class="card-text">Fresh Batanes lobster, simply steamed to highlight its flavor.</p>
+                        <a href="recipe_detail.html?id=payi_steamed" class="view-recipe-btn">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+            <p id="no-recipes-found" class="no-results hidden">No recipes match your current filter.</p>
+        </section>
+
+        <section id="tutorials" class="page-section fade-in content-section hidden">
+            <h1 class="section-title">Cooking Tutorials</h1>
+            <p class="section-subtitle">Learn how to cook authentic Batanes dishes with our step-by-step video guides.</p>
+            <div id="tutorial-grid" class="grid grid-2-col">
+                <div class="card tutorial-card">
+                    <div class="video-placeholder">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/IbzpU5o0YN0?si=4Y3kgficx7OD341y" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">How to Make Uvud Balls</h3>
+                        <p class="card-text">Master the art of preparing this unique Ivatan delicacy.</p>
+                    </div>
+                </div>
+                <div class="card tutorial-card">
+                    <div class="video-placeholder">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/l4iBMYQUoPM?si=Zh9Lg7iB6t-05S1-" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Cooking Vunes Perfectly</h3>
+                        <p class="card-text">Learn the secrets to cooking delicious Vunes with pork.</p>
+                    </div>
+                </div>
+                <div class="card tutorial-card">
+                    <div class="video-placeholder">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/1qERep-oruI?si=5VE25zhNnwSjPsZa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">How to cook Luñis</h3>
+                        <p class="card-text">Learn the secrets to cooking delicious Luñis</p>
+                    </div>
+                </div>
+                <div class="card tutorial-card">
+                    <div class="video-placeholder">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/6oM5QSvlLSg?si=dxZjhCxwSPZr9pkT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">How to cook Turmeric Rice </h3>
+                        <p class="card-text">Learn the secrets to cooking delicious Yellow Rice</p>
+                    </div>
+                </div>
+            </div>
+            <div id="video-modal" class="modal-overlay hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="video-modal-title" class="modal-title">Tutorial Video</h3>
+                        <button id="close-video-modal" class="modal-close-button">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="video-player-container" class="video-player-container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="marketplace" class="page-section fade-in content-section hidden">
+            <h1 class="section-title">Batanes Local Ingredients</h1>
+            <p class="section-subtitle">Find authentic, locally sourced ingredients directly from Batanes. Click below to see where you might find these products.</p>
+            
+            <div id="product-grid" class="grid grid-4-col">
+                <div class="card product-card">
+                    <img src="ingredients/turmeric.jpg" alt="Turmeric" class="product-image" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=Error'">
+                    <h3 class="product-name">Fresh Batanes Turmeric</h3>
+                    <p class="product-description">Potent and aromatic yellow ginger.</p>
+                    <a href="find_stores.html?product_name=Fresh+Batanes+Turmeric" class="button button-primary button-small">Find Stores</a>
+                </div>
+                <div class="card product-card">
+                    <img src="ingredients/dibang.jpg" alt="Dried Fish" class="product-image" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=Error'">
+                    <h3 class="product-name">Dried Flying Fish (Dibang)</h3>
+                    <p class="product-description">Sun-dried, perfect for frying or grilling.</p>
+                    <a href="find_stores.html?product_name=Dried+Flying+Fish+(Dibang)" class="button button-primary button-small">Find Stores</a>
+                </div>
+                <div class="card product-card">
+                    <img src="ingredients/wakay.jpg" alt="Wakay" class="product-image" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=Error'">
+                    <h3 class="product-name">Batanes Sweet Potato (Wakay)</h3>
+                    <p class="product-description">Naturally sweet and versatile root crop.</p>
+                    <a href="find_stores.html?product_name=Batanes+Sweet+Potato+(Wakay)" class="button button-primary button-small">Find Stores</a>
+                </div>
+                <div class="card product-card">
+                    <img src="ingredients/garlic.jpg" alt="Garlic" class="product-image" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=Error'">
+                    <h3 class="product-name">Native Batanes Garlic</h3>
+                    <p class="product-description">Small but intensely flavorful local garlic.</p>
+                    <a href="find_stores.html?product_name=Native+Batanes+Garlic" class="button button-primary button-small">Find Stores</a>
+                </div>
+                <div class="card product-card">
+                    <img src="ingredients/yam.jpg" alt="Yam (Uvi)" class="product-image" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=Error'">
+                    <h3 class="product-name">Yam (Uvi)</h3>
+                    <p class="product-description">A primary root crop in Batanes, with various local types.</p>
+                    <a href="find_stores.html?product_name=Yam+(Uvi)" class="button button-primary button-small">Find Stores</a>
+                </div>
+                <div class="card product-card">
+                    <img src="ingredients/taro.jpg" alt="Taro (Gabi)" class="product-image" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=Error'">
+                    <h3 class="product-name">Taro (Gabi / Sudi)</h3>
+                    <p class="product-description">Versatile root crop; corms, stalks (Vunes), and leaves are used.</p>
+                    <a href="find_stores.html?product_name=Taro+(Gabi+/+Sudi)" class="button button-primary button-small">Find Stores</a>
+                </div>
+                <div class="card product-card">
+                    <img src="ingredients/arayu.jpg" alt="Mahi-Mahi (Dorado)" class="product-image" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=Error'">
+                    <h3 class="product-name">Mahi-Mahi (Arayu)</h3>
+                    <p class="product-description">Delicious local fish, often sun-dried for preservation.</p>
+                    <a href="find_stores.html?product_name=Mahi-Mahi+(Arayu)" class="button button-primary button-small">Find Stores</a>
+                </div>
+                <div class="card product-card">
+                    <img src="ingredients/lobster.png" alt="Lobster (Payi)" class="product-image" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=Error'">
+                    <h3 class="product-name">Lobster (Payi)</h3>
+                    <p class="product-description">Prized Batanes rock lobsters, known for their sweet meat.</p>
+                    <a href="find_stores.html?product_name=Lobster+(Payi)" class="button button-primary button-small">Find Stores</a>
+                </div>
+                <div class="card product-card">
+                    <img src="ingredients/tamiduk.jpg" alt="Seaweeds (Tamiduk)" class="product-image" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=Error'">
+                    <h3 class="product-name">Tamiduk</h3>
+                    <p class="product-description">Edible local fiddlehead fern, often used in refreshing salads.</p>
+                    <a href="find_stores.html?product_name=Tamiduk" class="button button-primary button-small">Find Stores</a>
+                </div>
+                <div class="card product-card">
+                    <img src="ingredients/corm.jpg" alt="Banana Pith (Uvud)" class="product-image" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=Error'">
+                    <h3 class="product-name">Banana Pith (Uvud)</h3>
+                    <p class="product-description">The core of banana trunks, a unique ingredient for Uved Balls.</p>
+                    <a href="find_stores.html?product_name=Banana+Pith+(Uvud)" class="button button-primary button-small">Find Stores</a>
+                </div>
+                <div class="card product-card">
+                    <img src="ingredients/onion.jpg" alt="Batanes Onions" class="product-image" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=Error'">
+                    <h3 class="product-name">Batanes Onions</h3>
+                    <p class="product-description">Locally grown onions, often air-dried for longer storage.</p>
+                    <a href="find_stores.html?product_name=Batanes+Onions" class="button button-primary button-small">Find Stores</a>
+                </div>
+                <div class="card product-card">
+                    <img src="ingredients/sugarcane.jpg" alt="Sugarcane Wine (Palek)" class="product-image" onerror="this.src='https://placehold.co/300x300/cccccc/ffffff?text=Error'">
+                    <h3 class="product-name">Sugarcane Wine (Palek)</h3>
+                    <p class="product-description">Traditional Ivatan alcoholic beverage made from sugarcane.</p>
+                    <a href="find_stores.html?product_name=Sugarcane+Wine+(Palek)" class="button button-primary button-small">Find Stores</a>
+                </div>
+            </div>
+        </section>
+    
+        <section id="about" class="page-section fade-in content-section hidden">
+            <h1 class="section-title">Discover the Soul of Batanes Cuisine</h1>
+            <div class="card about-card">
+                <img src="img/about_batanes.jpg" alt="Traditional Ivatan stone house with a cooking setup or a beautiful Batanes landscape" class="about-image" onerror="this.src='https://placehold.co/800x350/BF5700/FFFFFF?text=Beautiful+Batanes+Setting'">
+                
+                <div class="about-text-content"> <p class="about-text">
+                        Welcome to the Batanes Cuisine Explorer! Our journey began with a deep admiration for the unique culinary heritage of the Ivatan people, the resilient inhabitants of the Philippines' northernmost islands. Batanes is a land of breathtaking landscapes, windswept hills, and a culture deeply connected to the rhythms of nature. This connection is beautifully reflected in its food.
+                    </p>
+                    <p class="about-text">
+                        Ivatan cuisine is a testament to resourcefulness and respect for the environment. Shaped by the islands' unique geography and the challenges of its remote location, the food is traditionally simple, hearty, and profoundly local. It relies heavily on what the land and sea provide: an abundance of root crops like <strong>Wakay (sweet potato)</strong>, <strong>Uvi (yam)</strong>, and <strong>Sudi (taro)</strong>; fresh catch from the surrounding waters, especially the iconic <strong>Dibang (flying fish)</strong> and <strong>Payi (lobster)</strong>; and ingenious methods of food preservation.
+                    </p>
+                    <p class="about-text">
+                        Dishes like <strong>Luñis</strong> (pork slow-cooked and preserved in its own lard), <strong>Vunes</strong> (dried taro stalks), and <strong>Uvud Balls</strong> (made from banana pith) tell stories of Ivatan ingenuity and adaptation. The vibrant yellow of <strong>Supas</strong> (turmeric rice) brightens every meal, while ingredients like native garlic and local onions add distinct flavors that are unmistakably Batanes. Sustainability isn't a trend here; it's a way of life, passed down through generations.
+                    </p>
+                    <p class="about-text">
+                        This website is our humble attempt to share the authentic flavors and culinary traditions of Batanes with you. Explore our collection of recipes, learn through tutorials, and discover where to find these unique local ingredients. We hope to offer you a glimpse into the resilient, vibrant culture of the Ivatans and their deep, respectful relationship with their bountiful islands.
+                    </p>
+                    <p class="about-text">
+                        Join us in celebrating the simple, honest, and delicious food of Batanes!
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+
+    </main>
+
+    <footer class="site-footer-container">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h4 class="footer-heading">Batanes Cuisine Explorer</h4>
+                <p class="footer-text">Your guide to the authentic flavors and culinary traditions of the Batanes islands.</p>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home" class="footer-link nav-link" data-section="home">Home</a></li>
+                    <li><a href="#recipes" class="footer-link nav-link" data-section="recipes">Recipes</a></li>
+                    <li><a href="#tutorials" class="footer-link nav-link" data-section="tutorials">Tutorials</a></li>
+                    <li><a href="#marketplace" class="footer-link nav-link" data-section="marketplace">Marketplace</a></li>
+                    <li><a href="#about" class="footer-link nav-link" data-section="about">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-heading">Contact Us</h4>
+                <p class="footer-text">Email: platitoivatan@gmail.com</p>
+                <p class="footer-text">Phone: +63 912 525 7612</p>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-heading">Newsletter</h4>
+                <p class="footer-text">Get updates on new recipes and products.</p>
+                <form id="newsletter-form" class="newsletter-form">
+                    <input type="email" id="newsletter-email" placeholder="Your Email" required class="input-field newsletter-input">
+                    <button type="submit" class="button button-primary button-small newsletter-button">Subscribe</button>
+                </form>
+                <p id="newsletter-response" class="newsletter-response hidden"></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2025 Batanes Cuisine Explorer. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

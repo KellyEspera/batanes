@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Stores - Batanes Cuisine Explorer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Reusing some styles from recipe_detail.php for consistency */
+        .find-stores-page-wrapper {
+            background-color: #f8f9fa; /* Light grey background for the page */
+            padding: 2rem 0;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+        .find-stores-page-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .back-button-area {
+            margin-bottom: 1.5rem;
+        }
+         .back-button-area .button-light {
+            border-color: #ccc;
+            color: #4A5568;
+            font-weight: 500;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.85rem;
+        }
+        .back-button-area .button-light:hover {
+            background-color: #e9ecef;
+            color: #333333;
+        }
+        .stores-list-card {
+            background-color: #ffffff;
+            padding: 2rem 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .stores-page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .stores-page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2em;
+            color: #BF5700; /* Rich primary color */
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .product-name-highlight {
+            color: #D95500; /* Logo color */
+        }
+        .store-list-ul {
+            list-style: none;
+            padding: 0;
+        }
+        .store-list-item {
+            background-color: #fdfcfb; /* Very light card background */
+            border: 1px solid #EAE0D3; /* Light beige border */
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .store-list-item h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3em;
+            color: #C05621; /* Primary accent */
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+        }
+        .store-list-item p {
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
+            color: #4A4A4A; /* Softer dark grey */
+        }
+        .store-list-item p strong {
+            color: #3D3730; /* Deep warm brown-black */
+            font-weight: 600;
+        }
+        .store-list-item a {
+            color: #E67E22; /* Vibrant orange for links */
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .store-list-item a:hover {
+            text-decoration: underline;
+            color: #D35400; /* Darker orange */
+        }
+        .no-stores-message {
+            text-align: center;
+            font-size: 1.1em;
+            padding: 2rem;
+            color: #6B5F55; /* Muted brown-grey */
+            background-color: #FFF9F0; /* Creamy beige */
+            border: 1px dashed #EAE0D3;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="find-stores-page-wrapper">
+        <div class="container find-stores-page-container">
+            <div class="back-button-area">
+                <a href="index.html#marketplace" class="button button-light button-small">&larr; Back to Marketplace</a>
+            </div>
+
+            <div class="stores-list-card" id="stores-list-content-area">
+                <p class="loading-message" style="text-align:center; padding: 2rem;">Loading store information...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script> 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const storesContentArea = document.getElementById('stores-list-content-area');
+            if (!storesContentArea) {
+                console.error("Stores content area not found!");
+                return;
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const productNameQuery = urlParams.get('product_name');
+
+            // Update page title dynamically
+            const pageTitleElement = document.querySelector('title');
+            if (productNameQuery) {
+                pageTitleElement.textContent = `Stores for ${productNameQuery.replace(/\+/g, ' ')} - Batanes Cuisine Explorer`;
+            } else {
+                pageTitleElement.textContent = "Find Stores - Batanes Cuisine Explorer";
+            }
+            
+            let headerHtml = `
+                <div class="stores-page-header">
+                    <h1 class="stores-page-title">Available Stores for <span class="product-name-highlight">${productNameQuery ? productNameQuery.replace(/\+/g, ' ') : 'Selected Product'}</span></h1>
+                </div>`;
+
+            if (!productNameQuery) {
+                storesContentArea.innerHTML = headerHtml + '<p class="no-stores-message">No product specified to find stores for.</p>';
+                return;
+            }
+
+            if (typeof storesData === 'undefined' || storesData === null) {
+                storesContentArea.innerHTML = headerHtml + '<p class="no-stores-message">Store data is not available. Check script.js.</p>';
+                console.error("storesData is not defined.");
+                return;
+            }
+
+            const productNameDecoded = productNameQuery.replace(/\+/g, ' '); // Decode spaces for matching
+            const foundStores = storesData.filter(store => 
+                store.sells_products && store.sells_products.some(product => product.toLowerCase() === productNameDecoded.toLowerCase())
+            );
+
+            if (foundStores.length > 0) {
+                let storesHtml = '<ul class="store-list-ul">';
+                foundStores.forEach(store => {
+                    storesHtml += `
+                        <li class="store-list-item">
+                            <h3>${store.name.replace(/</g, "<").replace(/>/g, ">")}</h3>
+                            ${store.location ? `<p><strong>Location:</strong> ${store.location.replace(/</g, "<").replace(/>/g, ">")}</p>` : ''}
+                            ${store.website && store.website !== '#' ? `<p><strong>Website:</strong> <a href="${store.website.startsWith('http') ? store.website : 'http://' + store.website}" target="_blank" rel="noopener noreferrer">${store.website.replace(/</g, "<").replace(/>/g, ">")}</a></p>` : ''}
+                            ${store.phone ? `<p><strong>Phone:</strong> ${store.phone.replace(/</g, "<").replace(/>/g, ">")}</p>` : ''}
+                            ${store.operating_hours ? `<p><strong>Hours:</strong> ${store.operating_hours.replace(/</g, "<").replace(/>/g, ">")}</p>` : ''}
+                            ${store.notes ? `<p><em>Note: ${store.notes.replace(/</g, "<").replace(/>/g, ">")}</em></p>` : ''}
+                        </li>`;
+                });
+                storesHtml += '</ul>';
+                storesContentArea.innerHTML = headerHtml + storesHtml;
+            } else {
+                storesContentArea.innerHTML = headerHtml + `<p class="no-stores-message">Sorry, we don't have specific store listings for "${productNameDecoded.replace(/</g, "<").replace(/>/g, ">")}" at this moment. Please check local markets in Batanes.</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
